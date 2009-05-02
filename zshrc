@@ -41,7 +41,6 @@ watch=all
 
 # {{{ Completion diverses et variées
 
-zstyle :compinstall filename "$HOME/.zshrc"
 autoload -Uz compinit
 compinit
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
@@ -57,26 +56,26 @@ zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#)*=36=31"
 # {{{ Somes aliases
 
 case `uname -s` in
-   FreeBSD)
-   export LSCOLORS="exgxfxcxcxdxdxhbadacec"
-   alias ls="ls -G"
-   alias ll="ls -Glh"
-   alias lla="ls -Glha"
-   alias lll="ls -Glh | less"
-   alias grep="grep --colour"
-   ;;
-   Linux)
-   if [[ -r ~/.dir_colors ]]; then
-      eval `dircolors -b ~/.dir_colors`
-   elif [[ -r /etc/DIR_COLORS ]]; then
-      eval `dircolors -b /etc/DIR_COLORS`
-   fi
-   alias ls="ls --color=auto"
-   alias ll='ls --color=auto -lh'
-   alias lla='ls --color=auto -lha'
-   alias lll='ls --color=auto -lh | less'
-   alias grep='grep --color=auto'
-   ;;
+  FreeBSD)
+  export LSCOLORS="exgxfxcxcxdxdxhbadacec"
+  alias ls="ls -G"
+  alias ll="ls -Glh"
+  alias lla="ls -Glha"
+  alias lll="ls -Glh | less"
+  alias grep="grep --colour"
+  ;;
+  Linux)
+  if [[ -r ~/.dir_colors ]]; then
+    eval `dircolors -b ~/.dir_colors`
+  elif [[ -r /etc/DIR_COLORS ]]; then
+    eval `dircolors -b /etc/DIR_COLORS`
+  fi
+  alias ls="ls --color=auto"
+  alias ll='ls --color=auto -lh'
+  alias lla='ls --color=auto -lha'
+  alias lll='ls --color=auto -lh | less'
+  alias grep='grep --color=auto'
+  ;;
 esac
 
 zstyle ':completion:*' list-colors ${(s.:.)LSCOLORS}
@@ -102,47 +101,61 @@ alias 2html='vim -e +:zR +:TOhtml +w +qa'
 
 # {{{ Fonctions et autres trucs
 
-function title {
-t="%n@%M %~"
 
-case $TERM in
-   screen|screen.linux)
-   print -nP "\ek$t\e\\"
-   print -nP "\e]0;$t\a"
-   ;;
-   xterm*|rxvt*|(E|e)term)
-   print -nP "\e]0;$t\a"
-   ;;
-esac
+# Convert * to mp3 files
+function 2mp3() 
+{
+  until [ -z $1 ]
+  do
+    ffmpeg -i $1 -acodec libmp3lame "`basename $1`.mp3"
+    shift
+  done
 }
 
-function precmd {
-title
 
-local deco="%{${fg_bold[black]}%}"
+function title
+{
+  t="%n@%M %~"
 
-if [[ -O "$PWD" ]]; then
-   local path_color="${fg_no_bold[white]}"
-elif [[ -w "$PWD" ]]; then
-   local path_color="${fg_no_bold[blue]}"
-else
-   local path_color="${fg_no_bold[red]}"
-fi
+  case $TERM in
+    screen|screen.linux)
+    print -nP "\ek$t\e\\"
+    print -nP "\e]0;$t\a"
+    ;;
+    xterm*|rxvt*|(E|e)term)
+    print -nP "\e]0;$t\a"
+    ;;
+  esac
+}
 
-case ${HOST%%.*} in
-   squat) local host_color="${fg_bold[green]}" ;;
-   shen)  local host_color="${fg_bold[blue]}" ;;
-   *)     local host_color="${fg_bold[default]}" ;;
-esac
+function precmd
+{
+  title
 
-local yellow="%{${fg_bold[yellow]}%}"
+  local deco="%{${fg_bold[black]}%}"
 
-local return_code="%(?..${deco}!%{${fg_no_bold[red]}%}%?${deco}! )"
-local user_at_host="%{${fg_bold[red]}%}%n${yellow}@%{${host_color}%}%M"
-local cwd="%{${path_color}%}%48<...<%~"
-local sign="%(!.%{${fg_bold[red]}%}.${deco})%#"
+  if [[ -O "$PWD" ]]; then
+    local path_color="${fg_no_bold[white]}"
+  elif [[ -w "$PWD" ]]; then
+    local path_color="${fg_no_bold[blue]}"
+  else
+    local path_color="${fg_no_bold[red]}"
+  fi
 
-PS1="${return_code}${deco}(${user_at_host} ${cwd}${deco}) ${sign}%{${reset_color}%} "
+  case ${HOST%%.*} in
+    squat) local host_color="${fg_bold[green]}" ;;
+    shen)  local host_color="${fg_bold[blue]}" ;;
+    *)     local host_color="${fg_bold[default]}" ;;
+  esac
+
+  local yellow="%{${fg_bold[yellow]}%}"
+
+  local return_code="%(?..${deco}!%{${fg_no_bold[red]}%}%?${deco}! )"
+  local user_at_host="%{${fg_bold[red]}%}%n${yellow}@%{${host_color}%}%M"
+  local cwd="%{${path_color}%}%48<...<%~"
+  local sign="%(!.%{${fg_bold[red]}%}.${deco})%#"
+
+  PS1="${return_code}${deco}(${user_at_host} ${cwd}${deco}) ${sign}%{${reset_color}%} "
 }
 
 # }}}
