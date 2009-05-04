@@ -95,6 +95,7 @@ alias exit="clear; exit"
 # Extra alias
 alias bashfr="lynx --dump --display_charset=utf8 \"http://www.bashfr.org/?sort=random2\" | awk '\$1~\"#\" && \$0!~\"RSS\" { getline; while (\$1!~\"#\") { print \$0; getline;}; exit}'"
 alias 2html='vim -e +:zR +:TOhtml +w +qa'
+alias top-10="sed -e 's/sudo //' $HOME/.histfile |  cut -d' ' -f1 | sort | uniq -c | sort -rg | head"
 
 
 # }}}
