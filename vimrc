@@ -83,11 +83,9 @@ set grepprg=grep\ -nH\ $*
 
 if has("autocmd")
    " Filetype
-   if exists(":filetype")
-      filetype on
-      filetype plugin on
-      filetype indent on
-   endif
+   filetype on
+   filetype plugin on
+   filetype indent on
    " Lire des pdf
    au!
    autocmd BufReadpre *.pdf set ro
@@ -116,6 +114,7 @@ if has("autocmd")
    autocmd FileType ruby   set omnifunc=rubycomplete#Complete
    autocmd FileType sql    set omnifunc=sqlcomplete#Complete
    autocmd FileType xml    set omnifunc=xmlcomplete#CompleteTags
+   autocmd BufRead,BufNewFile *.conf set ft=conf
 endif
 " Coloration syntaxique
 if has("syntax")
@@ -123,12 +122,12 @@ if has("syntax")
 endif
 
 
-"if exists(":runtime")
-"   runtime ftplugin/man.vim
-"   if exists(":nnoremap")
-"      nnoremap K :Man <cword><CR>
-"   endif
-"endif
+if exists(":runtime")
+   runtime ftplugin/man.vim
+   if exists(":nnoremap")
+      nnoremap K :Man <cword><CR>
+   endif
+endif
 
 
 
