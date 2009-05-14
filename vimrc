@@ -114,7 +114,7 @@ if has("autocmd")
    autocmd FileType ruby   set omnifunc=rubycomplete#Complete
    autocmd FileType sql    set omnifunc=sqlcomplete#Complete
    autocmd FileType xml    set omnifunc=xmlcomplete#CompleteTags
-   autocmd BufRead,BufNewFile *.conf set ft=conf
+   autocmd BufRead,BufNewFile lighttpd.conf set ft=conf
 endif
 " Coloration syntaxique
 if has("syntax")
