@@ -11,7 +11,7 @@
 # http://philpep.org
 # Thanks to Geekounet http://poildetroll.net
 
-# {{{ Variables d environnement
+# {{{ Environnement
 
 export EDITOR=vim
 export LC_ALL="en_US.UTF-8"
@@ -20,7 +20,7 @@ export GREP_COLOR=31
 
 # }}}
 
-# {{{ Configuration générale
+# {{{ Global config
 
 HISTFILE=~/.histfile
 HISTSIZE=5000
@@ -38,21 +38,14 @@ watch=all
 
 # }}}
 
-# {{{ Completion diverses et variées
+# {{{ keys
 
-autoload -Uz compinit
-compinit
-zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
-zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path ~/.zsh_cache
-zmodload zsh/complist
-zstyle ':completion:*:processes' command 'ps -aU$USER'
-zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#)*=36=31"
+bindkey  '^[[A'      up-line-or-history
+bindkey  '^[[B'    down-line-or-history
 
 # }}}
 
-# {{{ Somes aliases
+# {{{ Aliases
 
 case `uname -s` in
   FreeBSD)
@@ -80,7 +73,6 @@ case `uname -s` in
   ;;
 esac
 
-zstyle ':completion:*' list-colors ${(s.:.)LSCOLORS}
 
 alias cp='cp -v'
 alias mv='mv -v'
@@ -94,17 +86,37 @@ alias less='less -r'
 alias more='less -r'
 alias c='clear'
 alias exit="clear; exit"
-# Extra alias
 alias bashfr="lynx --dump --display_charset=utf8 \"http://www.bashfr.org/?sort=random2\" | awk '\$1~\"#\" && \$0!~\"RSS\" { getline; while (\$1!~\"#\") { print \$0; getline;}; exit}'"
 alias 2html='vim -e +:zR +:TOhtml +w +qa'
 alias top-10="sed -e 's/sudo //' $HOME/.histfile |  cut -d' ' -f1 | sort | uniq -c | sort -rg | head"
 
+# per extentions
+alias -s pdf="epdfview"
+alias -s png="eog"
+alias -s jpg="eog"
+alias -s gif="eog"
 
 # }}}
 
-# {{{ Fonctions et autres trucs
+# {{{ Completion 
 
+autoload -Uz compinit
+compinit
 
+zmodload zsh/complist
+zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
+zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh_cache
+zstyle ':completion:*:processes' command 'ps -aU$USER'
+zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#)*=36=31"
+zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
+/usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
+zstyle ':completion:*' list-colors ${(s.:.)LSCOLORS}
+
+# }}}
+
+# {{{ Functions
 # Convert * to mp3 files
 function 2mp3() 
 {
