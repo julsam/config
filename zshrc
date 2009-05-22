@@ -17,7 +17,6 @@ export EDITOR=vim
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
 export GREP_COLOR=31
-export PAGER="col -b | vim -c 'set ft=man nomod nolist' -"
 
 # }}}
 
@@ -58,6 +57,7 @@ zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#)*=36=31"
 case `uname -s` in
   FreeBSD)
   export LSCOLORS="exgxfxcxcxdxdxhbadacec"
+  export PAGER="col -b | vim -c 'set ft=man nomod nolist' -"
   alias ls="ls -G"
   alias ll="ls -Glh"
   alias lla="ls -Glha"
@@ -75,6 +75,7 @@ case `uname -s` in
   alias lla='ls --color=auto -lha'
   alias lll='ls --color=auto -lh | less'
   alias grep='grep --color=auto'
+  export PAGER="less"
   ;;
 esac
 
