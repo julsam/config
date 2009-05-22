@@ -76,6 +76,7 @@ case `uname -s` in
   alias lll='ls --color=auto -lh | less'
   alias grep='grep --color=auto'
   export PAGER="less"
+  export PATH="$HOME/bin:$PATH"
   ;;
 esac
 
