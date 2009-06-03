@@ -58,6 +58,7 @@ case `uname -s` in
   alias lla="ls -Glha"
   alias lll="ls -Glh | less"
   alias grep="grep --colour"
+  kbdcontrol -b off
   ;;
   Linux)
   if [[ -r ~/.dir_colors ]]; then
@@ -70,6 +71,7 @@ case `uname -s` in
   alias lla='ls --color=auto -lha'
   alias lll='ls --color=auto -lh | less'
   alias grep='grep --color=auto'
+  alias ut='~/Downloads/UT/UrbanTerror/ioUrbanTerror.i386'
   export PAGER="less"
   export PATH="$HOME/bin:$PATH"
   ;;

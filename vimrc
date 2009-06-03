@@ -12,7 +12,7 @@ set nocompatible
 " Pas de beeps !
 set errorbells
 set novisualbell
-set t_vb=
+set vb t_vb=
 " Backspace
 set backspace=indent,eol,start
 " Activer le backup
@@ -115,6 +115,7 @@ if has("autocmd")
    autocmd FileType sql    set omnifunc=sqlcomplete#Complete
    autocmd FileType xml    set omnifunc=xmlcomplete#CompleteTags
    autocmd BufRead,BufNewFile lighttpd.conf set ft=conf
+   autocmd BufRead,BufNewFile *conkyrc set ft=conkyrc
 endif
 " Coloration syntaxique
 if has("syntax")
