@@ -63,7 +63,7 @@ set ttyfast
 " un sript vim fait une opperation
 set lazyredraw
 " Taille indentation
-set shiftwidth=3
+set shiftwidth=4
 set autoindent
 set smartindent
 " Utiliser la souris
