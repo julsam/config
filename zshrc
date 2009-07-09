@@ -58,7 +58,7 @@ case `uname -s` in
   alias lla="ls -Glha"
   alias lll="ls -Glh | less"
   alias grep="grep --colour"
-  alias mount_iomega="mount -t msdosfs -o large,-L=en_US.UTF-8 -u 1003 -g 1003 /dev/da0s1 /mnt/IOMEGA"
+  alias mount_iomega="mount -t msdosfs -o large,-L=en_US.UTF-8,-u=1003,-g=1003 /dev/da0s1 /mnt/IOMEGA"
   kbdcontrol -b off
   ;;
   Linux)
