@@ -72,7 +72,6 @@ case `uname -s` in
   alias lla='ls --color=auto -lha'
   alias lll='ls --color=auto -lh | less'
   alias grep='grep --color=auto'
-  alias ut='~/Downloads/UT/UrbanTerror/ioUrbanTerror.i386'
   export PAGER="less"
   export PATH="$HOME/bin:$PATH"
   ;;
@@ -92,7 +91,6 @@ alias more='less -r'
 alias c='clear'
 alias exit="clear; exit"
 alias bashfr="lynx --dump --display_charset=utf8 \"http://www.bashfr.org/?sort=random2\" | awk '\$1~\"#\" && \$0!~\"RSS\" { getline; while (\$1!~\"#\") { print \$0; getline;}; exit}'"
-alias 2html='vim -e +:zR +:TOhtml +w +qa'
 alias top-10="sed -e 's/sudo //' $HOME/.histfile |  cut -d' ' -f1 | sort | uniq -c | sort -rg | head"
 
 # per extentions
@@ -132,6 +130,14 @@ function 2mp3()
   done
 }
 
+function 2html()
+{
+  until [ -z $1 ]
+  do
+    vim -n -c ':TOhtml' -c ':wqa' $1 &>/dev/null
+    shift
+  done
+}
 
 function title
 {
