@@ -1,20 +1,60 @@
 scriptencoding utf-8
 " File: Vim configuration file
-" Autor: philpep
+" Author: philpep <phil@philpep.org>
 " Www: http://philpep.org
-" Thanks: Geekounet http://poildetroll.net
-"
-"
-" Actualise le title du terminal
-set title
-" Non compatible avec vi
+
+" {{{ global configuration 
+" Be no compatible with vi
 set nocompatible
-" Pas de beeps !
+
+" No bells
 set errorbells
 set novisualbell
-set vb t_vb=
-" Backspace
+
 set backspace=indent,eol,start
+
+" History size
+set history=100
+" Undo size
+set undolevels=150
+" Don't show these file during completion
+set suffixes+=.jpg,.png,.jpeg,.gif,.bak,~,.swp,.swo,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc,.pyc,.pyo,.mod
+
+set showmatch
+set matchtime=2
+
+" search as I type
+set incsearch
+" ignore case when searching
+set ignorecase
+" override ignorecase if there are caps
+set smartcase
+" Show cursor position
+set ruler
+" Options de folding
+set foldmethod=marker
+" Don't redraw screen when executing macros
+set lazyredraw
+" indent size
+set shiftwidth=4
+set autoindent
+set smartindent
+" Use mouse for all mode
+set mouse=a
+" 3 lines visible around the cursor
+set scrolloff=3
+set sidescrolloff=5
+set scrolljump=1
+" Shell to use with :sh
+set shell=zsh
+" paste/nopaste
+set pastetoggle=<F11>
+" force file encoding
+set fileencodings=utf-8,latin1,default
+" grep command
+set grepprg=grep\ -nH\ $*
+
+
 " Activer le backup
 set backup
 " On teste si le repertoire existe
@@ -27,60 +67,9 @@ else
       set backupdir=$HOME/.vim/backup
    endif
 endif
+" }}} 
 
-" Taille de l'historique
-set history=100
-" Taille des undo (annuler)
-set undolevels=150
-" Suffixes a cacher :
-set suffixes+=.jpg,.png,.jpeg,.gif,.bak,~,.swp,.swo,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc,.pyc,.pyo,.mod
-
-" runtime path
-set runtimepath+=/usr/share/vim/2pdf
-
-" Voir les ouvertures et fermetures de ( { etc...
-set showmatch
-set matchtime=2
-" hilight search
-set hlsearch
-" search as I type
-set incsearch
-" ignore case when searching
-set ignorecase
-" override ignorecase if there are caps
-set smartcase
-
-" Afficher les commandes incompletes
-set showcmd
-" Affiche la position du curseur
-set ruler
-
-" Options de folding
-set foldmethod=marker
-" Si on est dans un terminal rapide
-set ttyfast
-" Permet de ne pas actualiser l'écran quand
-" un sript vim fait une opperation
-set lazyredraw
-" Taille indentation
-set shiftwidth=4
-set autoindent
-set smartindent
-" Utiliser la souris
-set mouse=a
-" 3 lines visible around the cursor
-set scrolloff=3
-set sidescrolloff=5
-set scrolljump=1
-" Un shell qui envoie
-set shell=zsh
-" paste/nopaste
-set pastetoggle=<F11>
-" force file encoding
-set fileencodings=utf-8,latin1,default
-" grep command
-set grepprg=grep\ -nH\ $*
-
+" {{{ Autocmd 
 if has("autocmd")
    " Filetype
    filetype on
@@ -117,12 +106,14 @@ if has("autocmd")
    autocmd BufRead,BufNewFile lighttpd.conf set ft=conf
    autocmd BufRead,BufNewFile *conkyrc set ft=conkyrc
 endif
-" Coloration syntaxique
+" }}}
+
+
 if has("syntax")
    syntax on
 endif
 
-
+" {{{ Mapping
 if exists(":runtime")
    runtime ftplugin/man.vim
    if exists(":nnoremap")
@@ -130,21 +121,18 @@ if exists(":runtime")
    endif
 endif
 
-
-
 if exists(":map")
    " some usefull key mapping
    map <F5> <Esc>gg=G''
    map <F6> :TlistToggle
    map <F7> :TlistUpdate
-   map <F9> :DiffChangesDiffToggle
-   map <F10> :DiffChangesPatchToggle
    map <A-Right> gt
    map <A-Left> gT
 endif
 
 if exists(":command")
    " open urls with firefox
-   command -bar -nargs=1 OpenURL :!firefox <args>
+   command -bar -nargs=1 OpenURL :!firefox3 <args>
 endif
+" }}}
 
