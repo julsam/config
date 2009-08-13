@@ -105,7 +105,7 @@ if has("autocmd")
    autocmd FileType xml    set omnifunc=xmlcomplete#CompleteTags
    autocmd BufRead,BufNewFile lighttpd.conf set ft=conf
    autocmd BufRead,BufNewFile *conkyrc set ft=conkyrc
-   autocmd BufRead,BufNewFile *.html set ft=mako
+   autocmd BufRead,BufNewFile *.html,*.mako set ft=mako
 endif
 " }}}
 
