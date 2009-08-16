@@ -43,6 +43,9 @@ set ts=4
 " paste/nopaste
 set pastetoggle=<F11>
 
+" Allow backspace in insert mode
+set backspace=indent,eol,start
+
 " For syntaxt/2html.vim
 let use_xhtml=1
 let html_ignore_folding=1

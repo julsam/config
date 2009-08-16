@@ -17,7 +17,6 @@ export EDITOR=vim
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
 export GREP_COLOR=31
-# For NAS
 export AUDIOSERVER=tcp/squat.philpep.org:8000
 
 # }}}
