@@ -37,8 +37,8 @@ set ruler
 set foldmethod=marker
 
 " shiftwidth
-set sw=5
-set ts=5
+set sw=4
+set ts=4
 
 " paste/nopaste
 set pastetoggle=<F11>
