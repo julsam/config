@@ -145,25 +145,8 @@ function 2html()
   done
 }
 
-function title
-{
-  t="%n@%M %~"
-
-  case $TERM in
-    screen|screen.linux)
-    print -nP "\ek$t\e\\"
-    print -nP "\e]0;$t\a"
-    ;;
-    xterm*|rxvt*|(E|e)term)
-    print -nP "\e]0;$t\a"
-    ;;
-  esac
-}
-
 function precmd
 {
-  title
-
   local deco="%{${fg_bold[black]}%}"
 
   if [[ -O "$PWD" ]]; then
