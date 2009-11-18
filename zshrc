@@ -51,7 +51,7 @@ bindkey  '^[[B'    down-line-or-history
 case `uname -s` in
   FreeBSD)
   export LSCOLORS="exgxfxcxcxdxdxhbadacec"
-  export PAGER="col -b | vim -c 'set ft=man nomod nolist' -"
+  alias man="PAGER=\"col -b | vim -c 'set ft=man nomod nolist' -\" && man"
   alias ls="ls -G"
   alias ll="ls -Glh"
   alias lla="ls -Glha"
