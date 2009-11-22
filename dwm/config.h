@@ -107,8 +107,13 @@ static void view_adjacent_tag(const Arg *arg, int distance)
     if (seltag < 0)
         seltag += LENGTH(tags);
 
-    a.i = (1 << seltag);
-    view(&a);
+    /* lock on first and last tag */
+    if ((distance == 1 && seltag != 0) ||
+            (distance == -1 && seltag != (LENGTH(tags)-1)))
+    {
+        a.i = (1 << seltag);
+        view(&a);
+    }
 
     return;
 }
