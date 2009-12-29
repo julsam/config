@@ -51,7 +51,17 @@ bindkey  '^[[B'    down-line-or-history
 case `uname -s` in
   FreeBSD)
   export LSCOLORS="exgxfxcxcxdxdxhbadacec"
+
   export PACKAGEROOT="ftp://ftp.fr.freebsd.org"
+  case `uname -r` in
+    8*) 
+    export PACKAGESITE="ftp://ftp.fr.freebsd.org/pub/FreeBSD/ports/i386/packages-8-stable/Latest/"
+    ;;
+    7*)
+    export PACKAGESITE="ftp://ftp.fr.freebsd.org/pub/FreeBSD/ports/i386/packages-7-stable/Latest/"
+    ;;
+  esac
+
   alias man="export PAGER=\"col -b | vim -c 'set ft=man nomod nolist' -\" && man"
   alias ls="ls -G"
   alias ll="ls -Glh"
