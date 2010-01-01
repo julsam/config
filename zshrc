@@ -54,11 +54,11 @@ case `uname -s` in
 
   export PACKAGEROOT="ftp://ftp.fr.freebsd.org"
   case `uname -r` in
-    8*) 
-    export PACKAGESITE="ftp://ftp.fr.freebsd.org/pub/FreeBSD/ports/i386/packages-8-stable/Latest/"
+    8.0-RELEASE) 
+    export PACKAGESITE="ftp://ftp.fr.freebsd.org/pub/FreeBSD/ports/i386/packages-8.0-release/Latest/"
     ;;
-    7*)
-    export PACKAGESITE="ftp://ftp.fr.freebsd.org/pub/FreeBSD/ports/i386/packages-7-stable/Latest/"
+    7.2-RELEASE)
+    export PACKAGESITE="ftp://ftp.fr.freebsd.org/pub/FreeBSD/ports/i386/packages-7.2-release/Latest/"
     ;;
   esac
 
