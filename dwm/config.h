@@ -3,6 +3,7 @@
 static void view_next_tag(const Arg *);
 static void view_prev_tag(const Arg *);
 static void view_adjacent_tag(const Arg *, int);
+static void focusandmvmon(const Arg *);
 
 /* appearance */
 static const char font[]            = "-*-*-medium-*-*-*-14-*-*-*-*-*-*-*";
@@ -64,8 +65,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
-	{ MODKEY|ControlMask,           XK_Left,   focusmon,       {.i = -1 } },
-	{ MODKEY|ControlMask,           XK_Right,  focusmon,       {.i = +1 } },
+	{ MODKEY|ControlMask,           XK_Left,   focusandmvmon,       {.i = -1 } },
+	{ MODKEY|ControlMask,           XK_Right,  focusandmvmon,       {.i = +1 } },
     { ControlMask,                  XK_Left,   view_prev_tag,  {0} },
     { ControlMask,                  XK_Right,  view_next_tag,  {0} },
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
@@ -130,4 +131,16 @@ static void view_prev_tag(const Arg *arg)
     (void)arg;
     view_adjacent_tag(arg, -1);
     return;
+}
+
+static void focusandmvmon(const Arg *arg) {
+	Monitor *m = NULL;
+	if (!mons->next)
+		return;
+	m = dirtomon(arg->i);
+	unfocus(selmon->sel);
+	selmon = m;
+	focus(NULL);
+	XWarpPointer(dpy, None, RootWindow(dpy, DefaultScreen(dpy)), 0, 0, 0, 0,
+			selmon->mx + selmon->mw / 2, selmon->my + selmon->mh /2 );
 }
