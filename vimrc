@@ -74,6 +74,7 @@ autocmd BufReadPost *
 autocmd BufRead,BufNewFile lighttpd.conf set ft=conf
 autocmd BufRead,BufNewFile *.conkyrc set ft=conkyrc
 autocmd BufRead,BufNewFile *.html,*.mako set ft=mako
+autocmd Filetype java setlocal omnifunc=javacomplete#Complete
 
 syntax on
 

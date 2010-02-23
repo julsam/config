@@ -1,2 +1,1 @@
 set guioptions+=mTB
-set editor='urxvt -e vim'

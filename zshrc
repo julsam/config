@@ -51,16 +51,7 @@ bindkey  '^[[B'    down-line-or-history
 case `uname -s` in
   FreeBSD)
   export LSCOLORS="exgxfxcxcxdxdxhbadacec"
-
-  export PACKAGEROOT="ftp://ftp.fr.freebsd.org"
-  case ${HOST%%.*} in
-    shen)
-    export PACKAGESITE="ftp://ftp.fr.freebsd.org/pub/FreeBSD/ports/i386/packages-8-stable/Latest/"
-    ;;
-    *)
-    export PACKAGESITE="ftp://ftp.fr.freebsd.org/pub/FreeBSD/ports/i386/packages-8.0-release/Latest/"
-    ;;
-  esac
+  export PACKAGESITE="http://pkg.philpep.org/Latest/"
 
   alias man="export PAGER=\"col -b | vim -c 'set ft=man nomod nolist' -\" && man"
   alias ls="ls -G"
