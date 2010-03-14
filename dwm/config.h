@@ -47,6 +47,8 @@ static const Layout layouts[] = {
 /* commands */
 static const char *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { "urxvtc", NULL };
+static const char *soundup[] = { "mixer", "vol", "+5", NULL };
+static const char *sounddown[] = { "mixer", "vol", "-5", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -65,10 +67,12 @@ static Key keys[] = {
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
-	{ MODKEY|ControlMask,           XK_Left,   focusandmvmon,       {.i = -1 } },
-	{ MODKEY|ControlMask,           XK_Right,  focusandmvmon,       {.i = +1 } },
+	{ MODKEY|ControlMask,           XK_Left,   focusandmvmon,  {.i = -1 } },
+	{ MODKEY|ControlMask,           XK_Right,  focusandmvmon,  {.i = +1 } },
     { ControlMask,                  XK_Left,   view_prev_tag,  {0} },
     { ControlMask,                  XK_Right,  view_next_tag,  {0} },
+    { MODKEY,                       XK_F3,     spawn,          {.v = sounddown } },
+    { MODKEY,                       XK_F4,     spawn,          {.v = soundup } },
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 };
 
@@ -91,7 +95,8 @@ static Button buttons[] = {
 
 
 
-static void view_adjacent_tag(const Arg *arg, int distance)
+static void
+view_adjacent_tag(const Arg *arg, int distance)
 {
     int i, curtags;
     int seltag = 0;
@@ -119,21 +124,25 @@ static void view_adjacent_tag(const Arg *arg, int distance)
     return;
 }
 
-static void view_next_tag(const Arg *arg)
+static void
+view_next_tag(const Arg *arg)
 {
     (void)arg;
     view_adjacent_tag(arg, +1);
     return;
 }
 
-static void view_prev_tag(const Arg *arg)
+static void
+view_prev_tag(const Arg *arg)
 {
     (void)arg;
     view_adjacent_tag(arg, -1);
     return;
 }
 
-static void focusandmvmon(const Arg *arg) {
+static void
+focusandmvmon(const Arg *arg)
+{
 	Monitor *m = NULL;
 	if (!mons->next)
 		return;
@@ -144,3 +153,4 @@ static void focusandmvmon(const Arg *arg) {
 	XWarpPointer(dpy, None, RootWindow(dpy, DefaultScreen(dpy)), 0, 0, 0, 0,
 			selmon->mx + selmon->mw / 2, selmon->my + selmon->mh /2 );
 }
+
