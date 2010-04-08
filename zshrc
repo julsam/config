@@ -14,8 +14,6 @@
 # {{{ Environnement
 
 export EDITOR=vim
-export LC_ALL="en_US.UTF-8"
-export LANG="en_US.UTF-8"
 export GREP_COLOR=31
 export AUDIOSERVER=tcp/squat.philpep.org:8000
 
@@ -50,6 +48,8 @@ bindkey  '^[[B'    down-line-or-history
 
 case `uname -s` in
   FreeBSD)
+  export LC_ALL="en_US.UTF-8"
+  export LANG="en_US.UTF-8"
   export LSCOLORS="exgxfxcxcxdxdxhbadacec"
   export PACKAGESITE="http://pkg.philpep.org/Latest/"
 
