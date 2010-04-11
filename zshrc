@@ -52,7 +52,6 @@ case `uname -s` in
   export LANG="en_US.UTF-8"
   export LSCOLORS="exgxfxcxcxdxdxhbadacec"
   export PACKAGESITE="http://pkg.philpep.org/Latest/"
-
   alias man="export PAGER=\"col -b | vim -c 'set ft=man nomod nolist' -\" && man"
   alias ls="ls -G"
   alias ll="ls -Glh"
@@ -73,7 +72,7 @@ case `uname -s` in
   alias lla='ls --color=auto -lha'
   alias lll='ls --color=auto -lh | less'
   alias grep='grep --color=auto'
-  export PAGER="less"
+  export MANPAGER="/bin/sh -c \"sed -e 's/.$(echo -e '\010')//g' | vim -R -c 'set ft=man nomod nolist' -\""
   export PATH="$HOME/bin:$PATH"
   ;;
 esac
