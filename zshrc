@@ -73,7 +73,7 @@ case `uname -s` in
   alias lll='ls --color=auto -lh | less'
   alias grep='grep --color=auto'
   export MANPAGER="/bin/sh -c \"sed -e 's/.$(echo -e '\010')//g' | vim -R -c 'set ft=man nomod nolist' -\""
-  export PATH="$HOME/bin:$PATH"
+  export PATH="$HOME/bin:/usr/local/bin:$PATH"
   ;;
 esac
 
