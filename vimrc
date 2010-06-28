@@ -4,9 +4,6 @@
 " No vi compatible
 set nocompatible
 
-" Use mouse
-set mouse=a
-
 " 3 lines visible around the cursor
 set scrolloff=3
 
@@ -91,3 +88,4 @@ map <F7> :TlistUpdate
 map <A-Right> gt
 map <A-Left> gT
 
+colo desert
