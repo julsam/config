@@ -73,7 +73,7 @@ case `uname -s` in
   alias lll='ls --color=auto -lh | less'
   alias grep='grep --color=auto'
   export MANPAGER="/bin/sh -c \"sed -e 's/.$(echo -e '\010')//g' | vim -R -c 'set ft=man nomod nolist' -\""
-  export PATH="$HOME/bin:/usr/local/bin:$PATH"
+  export PATH="$HOME/bin:/sbin:/usr/local/bin:$PATH"
   ;;
 esac
 
@@ -167,7 +167,7 @@ function precmd
   local yellow="%{${fg_bold[yellow]}%}"
 
   local return_code="%(?..${deco}!%{${fg_no_bold[red]}%}%?${deco}! )"
-  local user_at_host="%{${fg_bold[red]}%}%n${yellow}@%{${host_color}%}%M"
+  local user_at_host="%{${fg_bold[red]}%}%n${yellow}@%{${host_color}%}%m"
   local cwd="%{${path_color}%}%48<...<%~"
   local sign="%(!.%{${fg_bold[red]}%}.${deco})%#"
 
