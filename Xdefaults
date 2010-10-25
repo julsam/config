@@ -6,4 +6,4 @@ URxvt.termName: rxvt
 URxvt.font: xft:DejaVu Sans Mono:antialias=true:pixelsize=14
 !URxvt.font: -misc-dejavu sans mono-medium-r-normal--*-*-*-*-m-*-iso8859-1
 URxvt.perl-ext-common: default,matcher
-URxvt.urlLauncher: firefox3
+URxvt.urlLauncher: chromium-browser
