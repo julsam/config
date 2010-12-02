@@ -15,7 +15,6 @@
 
 export EDITOR=vim
 export GREP_COLOR=31
-export AUDIOSERVER=tcp/squat.philpep.org:8000
 
 # }}}
 
@@ -51,7 +50,7 @@ case `uname -s` in
   export LC_ALL="en_US.UTF-8"
   export LANG="en_US.UTF-8"
   export LSCOLORS="exgxfxcxcxdxdxhbadacec"
-  export PACKAGESITE="http://pkg.philpep.org/Latest/"
+  export PACKAGESITE="http://ftp.fr.freebsd.org/pub/FreeBSD/ports/packages/Latest/"
   alias man="export PAGER=\"col -b | vim -c 'set ft=man nomod nolist' -\" && man"
   alias ls="ls -G"
   alias ll="ls -Glh"
