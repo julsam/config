@@ -158,11 +158,7 @@ function precmd
     local path_color="${fg_no_bold[red]}"
   fi
 
-  case ${HOST%%.*} in
-    squat) local host_color="${fg_bold[green]}" ;;
-    shen)  local host_color="${fg_bold[blue]}" ;;
-    *)     local host_color="${fg_bold[default]}" ;;
-  esac
+  local host_color="${fg_bold[default]}"
 
   local yellow="%{${fg_bold[yellow]}%}"
 
