@@ -156,6 +156,12 @@ function precmd
     local path_color="${fg_no_bold[red]}"
   fi
 
+  if [[ -e ".git/HEAD" ]]; then
+    local git_branch=" [`awk -F'/' '{ print $3 }' .git/HEAD`]"
+  else
+    local git_branch=""
+  fi
+
   local host_color="${fg_bold[default]}"
 
   local yellow="%{${fg_bold[yellow]}%}"
@@ -165,8 +171,9 @@ function precmd
   local cwd="%{${path_color}%}%48<...<%~"
   local sign="%(!.%{${fg_bold[red]}%}.${deco})%#"
 
-  PS1="${return_code}${deco}(${user_at_host} ${cwd}${deco}) ${sign}%{${reset_color}%} "
+  PS1="${return_code}${deco}(${user_at_host} ${cwd}${git_branch}${deco}) ${sign}%{${reset_color}%} "
 }
+
 
 # }}}
 
