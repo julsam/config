@@ -1,0 +1,10 @@
+[user]
+        name = Philippe Pepiot
+        email = phil@philpep.org
+[color]
+        branch = auto
+        diff = auto
+        interactive = auto
+        status = auto
+        ui = true
+
