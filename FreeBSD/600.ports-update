@@ -1,0 +1,61 @@
+#!/bin/sh
+#
+# In public domain, do what you like with it,
+# and use it at your own risk... :)
+#
+
+# Define these variables in either /etc/periodic.conf or
+# /etc/periodic.conf.local to override the default values.
+#
+# daily_ports_update_enable="YES"
+# XXX no space in jails paths!
+# daily_ports_update_jails="/path/to/jail0 /path/to/jail1 ..."
+
+daily_ports_update_enable="NO"
+daily_ports_update_jails=""
+# If there is a global system configuration file, suck it in.
+#
+if [ -r /etc/defaults/periodic.conf ]
+then
+    . /etc/defaults/periodic.conf
+    source_periodic_confs
+fi
+
+rc=0
+
+case "$daily_ports_update_enable" in
+    [Yy][Ee][Ss])
+        echo
+        echo "Ports update on `hostname` at `date "+%y/%m/%d %H:%M:%S"`"
+        echo
+
+        PORTSDIR=`/usr/bin/make -f /usr/share/mk/bsd.port.mk -V PORTSDIR`
+
+        echo "Running csup..."
+        /usr/bin/make -C "$PORTSDIR" update >/dev/null
+        echo
+
+        #echo "Making new INDEX..."
+        #/usr/bin/make -C "$PORTSDIR" index
+        #echo
+
+        echo "UPDATING changes:"
+        [ -f "${PORTSDIR}/UPDATING.old" ] && /usr/bin/diff -bBEuw "${PORTSDIR}/UPDATING.old" "${PORTSDIR}/UPDATING"
+        /bin/cp "${PORTSDIR}/UPDATING" "${PORTSDIR}/UPDATING.old"
+        echo
+
+        echo "Ports updates on main host:"
+        /usr/sbin/pkg_version -v -l '<'
+        echo
+
+        echo "Ports updates on jails:"
+        for jail in $daily_ports_update_jails; do
+            if [ -d "${jail}/var/db/pkg" ]; then
+                echo " - ${jail}:"
+                PKG_DBDIR="${jail}/var/db/pkg" /usr/sbin/pkg_version -v -l '<'
+                echo
+            fi
+        done
+esac
+
+exit $rc
