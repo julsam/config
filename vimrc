@@ -37,6 +37,10 @@ set foldmethod=marker
 set sw=4
 set ts=4
 
+" show tab and spaces
+set list
+set lcs:tab:>-,trail:.
+
 " paste/nopaste
 set pastetoggle=<F11>
 
