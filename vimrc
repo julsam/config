@@ -1,8 +1,16 @@
 " Description: Vim configuration file
 " Author: Philippe Pepiot <phil@philpep.org>
 
+set t_Co=256
+colorscheme desert256
+
+" line number
+set number
 " No vi compatible
 set nocompatible
+
+" Use mouse
+set mouse=a
 
 " 3 lines visible around the cursor
 set scrolloff=3
@@ -15,8 +23,8 @@ set errorbells
 set novisualbell
 
 " History
-set history=100
-set undolevels=150
+set history=500
+set undolevels=500
 
 " Don't show these file during completion
 set suffixes+=.jpg,.png,.jpeg,.gif,.bak,~,.swp,.swo,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc,.pyc,.pyo,.mod
@@ -42,7 +50,7 @@ set list
 set lcs:tab:>-,trail:.
 
 " paste/nopaste
-set pastetoggle=<F11>
+set pastetoggle=<F10>
 
 " Allow backspace in insert mode
 set backspace=indent,eol,start
@@ -90,7 +98,13 @@ let $MANPAGER='less'
 map <F5> <Esc>gg=G''
 map <F6> :TlistToggle
 map <F7> :TlistUpdate
+map <F11> :bprevious<CR>
+map <F12> :bNext<CR>
 map <A-Right> gt
 map <A-Left> gT
 
-colo desert
+" Pydoc help via <F3> via @ghislan
+map <F3> :BufExplorer<CR>
+
+" coding unicode python
+map <F4> :0<CR>O# -*- coding: utf-8 -*-

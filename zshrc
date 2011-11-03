@@ -11,6 +11,10 @@
 # http://philpep.org
 # Thanks to Geekounet http://poildetroll.net
 
+#if [ "$TERM" == "xterm" ]; then
+#  export TERM=xterm-256color
+#fi
+
 # {{{ Environnement
 
 export EDITOR=vim
