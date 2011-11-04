@@ -86,6 +86,8 @@ autocmd BufRead,BufNewFile *.html,*.mako set ft=mako
 autocmd BufRead,BufNewFile *.pgc set ft=c
 autocmd Filetype java setlocal omnifunc=javacomplete#Complete
 
+call pathogen#infect()
+
 syntax on
 
 " :Man
