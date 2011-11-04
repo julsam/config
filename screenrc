@@ -128,26 +128,13 @@ defbce "on"
 
 # Fix for residual screen
 altscreen on
-
-# too much bugs with ssh
-#term screen-256color
-
 startup_message off
 hardstatus on
-#hardstatus alwayslastline
-
-#caption always "%{= KW}%-w%{= gW}%n %t%{-}%+w %-="
-#hardstatus string "%{= KW}%-w%{=b gW}%n %t%{-}%{=-b KW}%?%+w%? %=%c %d/%m/%Y" #B&W & date&time
 sorendition kw
-
 vbell off
-
-# scroll
 termcapinfo xterm* ti@:te@
-
 autodetach on
 defutf8 on
-#caption always '%{=b k}[%{=b W} %0c:%s %{=b k}] %{= W}%?%-Lw%?%{=b R}(%{W}%n%f %t%{=b R})%{= W}%?%+Lw%?'
 caption always '%{=b k}[%{=b W} %{=b k}] %{= W}%?%-Lw%?%{=b R}(%{W}%n%f %t%{=b R})%{= W}%?%+Lw%?'
 
 
