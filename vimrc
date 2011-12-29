@@ -45,6 +45,12 @@ set foldmethod=marker
 set sw=4
 set ts=4
 
+" highlight search
+set hlsearch
+
+" autoindent
+set autoindent
+
 " show tab and spaces
 set list
 set lcs:tab:>-,trail:.
@@ -101,7 +107,7 @@ map <F5> <Esc>gg=G''
 map <F6> :TlistToggle
 map <F7> :TlistUpdate
 map <F11> :bprevious<CR>
-map <F12> :bNext<CR>
+map <F12> :bnext<CR>
 map <A-Right> gt
 map <A-Left> gT
 
