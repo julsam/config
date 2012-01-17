@@ -19,6 +19,7 @@
 
 export EDITOR=vim
 export GREP_COLOR=31
+export NODE_PATH=/home/julien/downloads/node-v0.6.1:/home/julien/downloads/node_modules
 
 # }}}
 
