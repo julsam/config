@@ -55,9 +55,6 @@ set autoindent
 set list
 set lcs:tab:>-,trail:.
 
-" paste/nopaste
-set pastetoggle=<F10>
-
 " Allow backspace in insert mode
 set backspace=indent,eol,start
 
@@ -102,17 +99,29 @@ nnoremap K :Man <cword><CR>
 let $PAGER='less'
 let $MANPAGER='less'
 
+" paste/nopaste
+set pastetoggle=<F9>
+
 " Mappings
+
 map <F5> <Esc>gg=G''
 map <F6> :TlistToggle
 map <F7> :TlistUpdate
-map <F11> :bprevious<CR>
-map <F12> :bnext<CR>
+
+" new tab
+map <F10> :tabnew<CR>
+" previous tab
+map <F11> :tabp<CR>
+" next tab
+map <F12> :tabn<CR>
+
 map <A-Right> gt
 map <A-Left> gT
 
-" Pydoc help via <F3> via @ghislan
-map <F3> :BufExplorer<CR>
-
 " coding unicode python
 map <F4> :0<CR>O# -*- coding: utf-8 -*-
+
+" Pydoc help via <F3> via @ghislan
+"map <F3> :BufExplorer<CR>
+"map <F11> :bprevious<CR>
+"map <F12> :bnext<CR>
